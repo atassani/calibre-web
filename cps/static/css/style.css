@@ -438,3 +438,16 @@ div.log {
 .error-list {
     margin-top: 5px;
   }
+
+img.emblem-overlay-img {
+    position: absolute;
+    left: -20px;
+    width: 18px;
+    height: 18px !important;
+    border: 0 !important
+}
+
+.emblem-position {
+    top: -225px;
+    right: 10px;
+}

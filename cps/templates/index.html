@@ -95,6 +95,62 @@
             <span class="img" title="{{ entry.Books.title }}">
               {{ image.book_cover(entry.Books) }}
               {% if entry[2] == True %}<span class="badge read glyphicon glyphicon-ok"></span>{% endif %}
+              {% for tag in entry.Books.tags %}
+                  {% if tag.name == 'format:physical' %}
+                      <img src="{{ url_for('static', filename='emblems/book_read.png') }}" class="emblem-overlay-img emblem-position" alt="Read" title="Read">
+                  {% endif %}
+                  {% if tag.name == 'format:physical' %}
+                      <img src="{{ url_for('static', filename='emblems/circle_0.png') }}" class="emblem-overlay-img emblem-position" alt="Currently reading" title="Currently reading">
+                  {% endif %}
+                  {% if tag.name == 'format:physical' %}
+                      <img src="{{ url_for('static', filename='emblems/circle_1.png') }}" class="emblem-overlay-img emblem-position" alt="Read order 1" title="Read order 1">
+                  {% endif %}
+                  {% if tag.name == 'format:physical' %}
+                      <img src="{{ url_for('static', filename='emblems/circle_2.png') }}" class="emblem-overlay-img emblem-position" alt="Read order 2" title="Read order 2">
+                  {% endif %}
+                  {% if tag.name == 'format:physical' %}
+                      <img src="{{ url_for('static', filename='emblems/circle_3.png') }}" class="emblem-overlay-img emblem-position" alt="Read order 3" title="Read order 3">
+                  {% endif %}
+                  {% if tag.name == 'format:physical' %}
+                      <img src="{{ url_for('static', filename='emblems/circle_4.png') }}" class="emblem-overlay-img emblem-position" alt="Read order 4" title="Read order 4">
+                  {% endif %}
+                  {% if tag.name == 'format:physical' %}
+                      <img src="{{ url_for('static', filename='emblems/circle_5.png') }}" class="emblem-overlay-img emblem-position" alt="Read order 5" title="Read order 5">
+                  {% endif %}
+                  {% if tag.name == 'format:physical' %}
+                      <img src="{{ url_for('static', filename='emblems/round_book.png') }}" class="emblem-overlay-img emblem-position" alt="Owned phisical" title="Owned physical">
+                  {% endif %}
+                  {% if tag.name == 'format:kindle' %}
+                      <img src="{{ url_for('static', filename='emblems/kindle.png') }}" class="emblem-overlay-img emblem-position">
+                  {% endif %}
+                  {% if tag.name == 'format:safari' %}
+                      <img src="{{ url_for('static', filename='emblems/oreilly.png') }}" class="emblem-overlay-img emblem-position">
+                  {% endif %}
+                  {% if tag.name == 'format:files' %}
+                      <img src="{{ url_for('static', filename='emblems/computer_files.png') }}" class="emblem-overlay-img emblem-position">
+                  {% endif %}
+                  {% if tag.name == 'format:ebook' %}
+                      <img src="{{ url_for('static', filename='emblems/downloaded_book_pirate.png') }}" class="emblem-overlay-img emblem-position">
+                  {% endif %}
+                  {% if tag.name == 'format:borrowed' %}
+                      <img src="{{ url_for('static', filename='emblems/borrowed_trans.png') }}" class="emblem-overlay-img emblem-position">
+                  {% endif %}
+                  {% if tag.name == 'format:ebookOK' %}
+                      <img src="{{ url_for('static', filename='emblems/downloaded_book.png') }}" class="emblem-overlay-img emblem-position">
+                  {% endif %}
+                  {% if tag.name == 'format:warning' %}
+                      <img src="{{ url_for('static', filename='emblems/warning.png') }}" class="emblem-overlay-img emblem-position">
+                  {% endif %}
+                  {% if tag.name == 'format:stop' %}
+                      <img src="{{ url_for('static', filename='emblems/stop.png') }}" class="emblem-overlay-img emblem-position">
+                  {% endif %}
+                  {% if tag.name == 'format:audio' %}
+                      <img src="{{ url_for('static', filename='emblems/audio.png') }}" class="emblem-overlay-img emblem-position">
+                  {% endif %}
+                  {% if tag.name == 'format:NOTDEFINED' %}
+                      <img src="{{ url_for('static', filename='emblems/green_check.png') }}" class="emblem-overlay-img emblem-position">
+                  {% endif %}
+              {% endfor %}
             </span>
           </a>
       </div>
