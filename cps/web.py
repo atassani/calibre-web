@@ -353,9 +353,11 @@ def get_sort_function(sort_param, data):
     if sort_param == 'old':
         order = [db.Books.timestamp]
     if sort_param == 'authaz':
-        order = [db.Books.author_sort.asc(), db.Series.name, db.Books.series_index]
+        #order = [db.Books.author_sort.asc(), db.Series.name, db.Books.series_index]
+        order = ['CustomAsc']
     if sort_param == 'authza':
-        order = [db.Books.author_sort.desc(), db.Series.name.desc(), db.Books.series_index.desc()]
+        #order = [db.Books.author_sort.desc(), db.Series.name.desc(), db.Books.series_index.desc()]
+        order = ['CustomDesc']
     if sort_param == 'seriesasc':
         order = [db.Books.series_index.asc()]
     if sort_param == 'seriesdesc':

@@ -32,6 +32,7 @@ from sqlalchemy.orm import relationship, sessionmaker, scoped_session
 from sqlalchemy.orm.collections import InstrumentedList
 from sqlalchemy.ext.declarative import DeclarativeMeta
 from sqlalchemy.exc import OperationalError
+from sqlalchemy import desc, asc
 try:
     # Compatibility with sqlalchemy 2.0
     from sqlalchemy.orm import declarative_base
@@ -768,9 +769,13 @@ class CalibreDB:
         else:
             try:
                 read_column = cc_classes[config_read_column]
-                query = (self.session.query(database, ub.ArchivedBook.is_archived, read_column.value)
+                # Hardcoded the column name for readorder
+                # Toni
+                readorder_column =  cc_classes[6]
+                query = (self.session.query(database, ub.ArchivedBook.is_archived, read_column.value, readorder_column.value.label('readorder_value'))
                          .select_from(Books)
-                         .outerjoin(read_column, read_column.book == Books.id))
+                         .outerjoin(read_column, read_column.book == Books.id)
+                         .outerjoin(readorder_column, readorder_column.book == Books.id))
             except (KeyError, AttributeError, IndexError):
                 log.error("Custom Column No.{} does not exist in calibre database".format(config_read_column))
                 # Skip linking read column and return None instead of read status
@@ -840,6 +845,14 @@ class CalibreDB:
         pagination = list()
         try:
             pagination = Pagination(page, pagesize, query.count())
+            # Toni
+            if (order[0] == 'CustomAsc' or order[0] == 'CustomDesc'):
+                readorder_column =  cc_classes[6]
+                query = query.filter(readorder_column.value > 0)
+                if order[0] == 'CustomAsc':
+                    order = [asc(readorder_column.value)]
+                else:
+                    order = [desc(readorder_column.value)]
             entries = query.order_by(*order).offset(off).limit(pagesize).all()
         except Exception as ex:
             log.error_or_exception(ex)
