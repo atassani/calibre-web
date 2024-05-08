@@ -94,7 +94,7 @@
           <a href="{{ url_for('web.show_book', book_id=entry.Books.id) }}" {% if simple==false %}data-toggle="modal" data-target="#bookDetailsModal" data-remote="false"{% endif %}>
             <span class="img" title="{{ entry.Books.title }}">
               {{ image.book_cover(entry.Books) }}
-              {% if entry[2] == True %}<span class="badge read glyphicon glyphicon-ok"></span>{% endif %}
+              {# % if entry[2] == True %}<span class="badge read glyphicon glyphicon-ok"></span>{% endif % #}
               {% for tag in entry.Books.tags|sort(attribute='name')|reverse %}
                   {% if tag.name.split(':')[0] == 'readorder' %}
                     {% set read_order = tag.name.split(':')[1]|float %}
@@ -149,6 +149,9 @@
                   {% endif %}
                   {% if tag.name == 'format:audiobook' %}
                       <img src="{{ url_for('static', filename='emblems/audio.png') }}" class="emblem-overlay-img emblem-position"  alt="Audio" title="Audio">
+                  {% endif %}
+                  {% if tag.name == 'format:option' %}
+                      <img src="{{ url_for('static', filename='emblems/lightbulb.png') }}" class="emblem-overlay-img emblem-position"  alt="Audio" title="Audio">
                   {% endif %}
                   {% if tag.name == 'format:NOTDEFINED' %}
                       <img src="{{ url_for('static', filename='emblems/green_check.png') }}" class="emblem-overlay-img emblem-position">
