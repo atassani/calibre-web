@@ -30,7 +30,7 @@ log = logger.create()
 
 
 def b64encode_json(json_data):
-    return b64encode(json.dumps(json_data).encode())
+    return b64encode(json.dumps(json_data).encode()).decode("utf-8")
 
 
 # Python3 has a timestamp() method we could be calling, however it's not available in python2.
@@ -173,8 +173,8 @@ class SyncToken:
 
     def __str__(self):
         return "{},{},{},{},{},{}".format(self.books_last_created,
-                                       self.books_last_modified,
-                                       self.archive_last_modified,
-                                       self.reading_state_last_modified,
-                                       self.tags_last_modified,
-                                       self.raw_kobo_store_token)
+                                          self.books_last_modified,
+                                          self.archive_last_modified,
+                                          self.reading_state_last_modified,
+                                          self.tags_last_modified,
+                                          self.raw_kobo_store_token)
